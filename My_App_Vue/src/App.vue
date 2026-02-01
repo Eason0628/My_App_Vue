@@ -1,9 +1,5 @@
-<script setup>
-</script>
-
 <template>
-  <div>Hello Vue!</div>
+  <router-view />
 </template>
 
-<style scoped>
-</style>
+
