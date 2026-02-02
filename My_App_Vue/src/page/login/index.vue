@@ -49,51 +49,73 @@
   </div>
 </template>
 
-<script setup>
+<script>
 import { reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 import { Form, message } from "ant-design-vue";
 import { UserOutlined, LockOutlined } from "@ant-design/icons-vue";
 import { login } from "@/js/service/user.js";
+import { useStore } from "vuex";
 
-const router = useRouter();
+export default {
+  name: "Login",
+  setup() {
+    const router = useRouter();
+    const [form] = Form.useForm();
+    const loading = ref(false);
 
-const form = Form.useForm();
-const loading = ref(false);
+    const user = reactive({
+      username: "",
+      password: "",
+    });
 
-const user = reactive({
-  username: "",
-  password: "",
-});
-const rules = {
-  username: [{ required: true, message: "Please input your username", trigger: "blur" }],
-  password: [{ required: true, message: "Please input your password", trigger: "blur" }],
-};
+    const rules = {
+      username: [
+        { required: true, message: "Please input your username", trigger: "blur" },
+      ],
+      password: [
+        { required: true, message: "Please input your password", trigger: "blur" },
+      ],
+    };
 
-const title = "Intelegent Park";
-const logo = "/images/logo.png";
-const handleLogin = async () => {
+    const title = "Intelegent Park";
+    const logo = "/images/logo.png";
 
-  try {
-    loading.value = true;
-    await form.validate();
-    const { data } = await login(user);
-    const { token, username, btnAuth } = data;
 
-    sessionStorage.setItem("username", username);
-    sessionStorage.setItem("btnAuth", JSON.stringify(btnAuth));
-    sessionStorage.setItem("token", token);
+    const handleLogin = async () => {
+      try {
+        loading.value = true;
+        await form.validate();
+        const { data } = await login(user);
+        const { token, username, btnAuth } = data;
+        sessionStorage.setItem("username", username);
+        sessionStorage.setItem("btnAuth", JSON.stringify(btnAuth));
+        sessionStorage.setItem("token", token);
+        message.success("Login success");
+        router.replace("/");
+      } catch (err) {
+        console.error(err);
+        message.error("Login failed");
+      } finally {
+        loading.value = false;
+      }
+    };
 
-    message.success("Login success");
-    router.replace("/");
-  } catch (err) {
-    console.error(err);
-    message.error("Login failed");
-  } finally {
-    loading.value = false;
-  }
+    return {
+      form,
+      loading,
+      user,
+      rules,
+      title,
+      logo,
+      handleLogin,
+      UserOutlined,
+      LockOutlined,
+    };
+  },
 };
 </script>
+
 
 <style lang="scss" scoped>
 .login {
@@ -112,7 +134,7 @@ const handleLogin = async () => {
     background-image: url('/images/lgbg.jpg');
     .part {
       width: 364px;
-      height: 560px;
+      height: 700px;
       padding: 140px 20px 0px 20px;
       background-color: white;
       margin-left: auto;
