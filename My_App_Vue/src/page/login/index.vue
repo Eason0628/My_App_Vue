@@ -60,10 +60,11 @@ import { useStore } from "vuex";
 export default {
   name: "Login",
   setup() {
+    const store = useStore();
     const router = useRouter();
-    const [form] = Form.useForm();
+    const form = Form.useForm();
     const loading = ref(false);
-
+    store.dispatch("user/SetMenus");
     const user = reactive({
       username: "",
       password: "",

@@ -50,369 +50,156 @@ Mock.mock("https://www.demo.com/login", "post", (options) => {
 
 const menuList = [
   {
-    icon: "DashboardOutlined",
-    label: "工作台",
-    key: "/dashboard",
-  },
-  {
-    icon: "TeamOutlined",
-    label: "租户管理",
-    key: "/users",
+    menuId: 1,
+    menuParentId: 0,
+    menuIcon: "ApartmentOutlined",
+    menuName: "menu.instrument",
+    menuType: 0,
+    sortNum: 1,
     children: [
       {
-        icon: "UnorderedListOutlined",
-        label: "租户列表",
-        key: "/users/list",
+        menuId: 2,
+        menuParentId: 1,
+        menuIcon: "ApiOutlined",
+        menuName: "menu.application",
+        menuType: 1,
+        menuUrl: "/tool/application",
+        menuWinformName: "tool/application/index.vue",
+        sortNum: 1,
+        children: [],
       },
       {
-        icon: "UserAddOutlined",
-        label: "新增租户",
-        key: "/users/add",
+        menuId: 3,
+        menuParentId: 1,
+        menuIcon: "AimOutlined",
+        menuName: "menu.tool",
+        menuType: 1,
+        menuUrl: "/sim/tool",
+        menuWinformName: "tool/index.vue",
+        sortNum: 2,
+        children: [],
       },
     ],
   },
   {
-    icon: "LaptopOutlined",
-    label: "物业管理",
-    key: "/estate",
+    menuId: 4,
+    menuParentId: 0,
+    menuIcon: "AccountBookOutlined",
+    menuName: "menu.library",
+    menuType: 1,
+    menuUrl: "/test/test",
+    menuWinformName: "library/index.vue",
+    sortNum: 20,
+    children: [],
+  },
+  {
+    menuId: 5,
+    menuParentId: 0,
+    menuIcon: "AppleOutlined",
+    menuName: "menu.toolConfig",
+    menuType: 0,
+    sortNum: 21,
     children: [
       {
-        icon: "InsertRowLeftOutlined",
-        label: "楼宇管理",
-        key: "/estate/tenement",
+        menuId: 6,
+        menuParentId: 5,
+        menuIcon: "FormatPainterOutlined",
+        menuName: "menu.toolOne",
+        menuType: 0,
+        menuUrl: "",
+        sortNum: 23,
+        children: [
+          {
+            menuId: 7,
+            menuParentId: 6,
+            menuIcon: "AlertOutlined",
+            menuName: "menu.pageone",
+            menuType: 1,
+            menuUrl: "/menu/pageone",
+            menuWinformName: "tool/toolOne.vue",
+            sortNum: 25,
+            children: [],
+          },
+        ],
       },
       {
-        icon: "BankOutlined",
-        label: "房间管理",
-        key: "/estate/room",
-      },
-      {
-        icon: "TruckOutlined",
-        label: "车辆信息",
-        key: "/estate/car",
+        menuId: 8,
+        menuParentId: 5,
+        menuIcon: "FilePdfOutlined",
+        menuName: "menu.toolTwo",
+        menuType: 0,
+        sortNum: 24,
+        children: [
+          {
+            menuId: 9,
+            menuParentId: 8,
+            menuIcon: "AuditOutlined",
+            menuName: "menu.toolTwo",
+            menuType: 1,
+            menuUrl: "/tool/toolTwo",
+            menuWinformName: "tool/toolTwo.vue",
+            sortNum: 27,
+            children: [],
+          },
+          {
+            menuId: 10,
+            menuParentId: 8,
+            menuIcon: "AlertOutlined",
+            menuName: "menu.toolThree",
+            menuType: 1,
+            menuUrl: "/tool/toolThree",
+            menuWinformName: "tool/toolThree.vue",
+            sortNum: 28,
+            children: [],
+          },
+        ],
       },
     ],
-  },
-  {
-    icon: "ToolOutlined",
-    label: "报修管理",
-    key: "/repair",
-  },
-  {
-    icon: "DollarOutlined",
-    label: "财务管理",
-    key: "/finance",
-    children: [
-      {
-        icon: "ProfileOutlined",
-        label: "合同管理",
-        key: "/finance/contract",
-      },
-      {
-        icon: "FrownOutlined",
-        label: "合同详情",
-        key: "/finance/surrender",
-      },
-      {
-        icon: "FileTextOutlined",
-        label: "账单管理",
-        key: "/finance/bill",
-      },
-    ],
-  },
-  {
-    icon: "TransactionOutlined",
-    label: "招商管理",
-    key: "/merchants",
-  },
-  {
-    icon: "FundProjectionScreenOutlined",
-    label: "运营管理",
-    key: "/operation",
-    children: [
-      {
-        icon: "FundViewOutlined",
-        label: "运营总览",
-        key: "/operation/all",
-      },
-      {
-        icon: "ReadOutlined",
-        label: "文章发布",
-        key: "/operation/article",
-      },
-      {
-        icon: "CommentOutlined",
-        label: "内容评论",
-        key: "/operation/comments",
-      },
-    ],
-  },
-  {
-    icon: "ToolOutlined",
-    label: "设备管理",
-    key: "/equipment",
-  },
-  {
-    icon: "ThunderboltOutlined",
-    label: "能源消耗",
-    key: "/energy",
-  },
-  {
-    icon: "SettingOutlined",
-    label: "系统设置",
-    key: "/settings",
-  },
-  {
-    icon: "UserOutlined",
-    label: "个人中心",
-    key: "/personal",
-  },
-];
-
-const userMenuList = [
-  {
-    icon: "DashboardOutlined",
-    label: "工作台",
-    key: "/dashboard",
-  },
-  {
-    icon: "TeamOutlined",
-    label: "租户管理",
-    key: "/users",
-    children: [
-      {
-        icon: "UnorderedListOutlined",
-        label: "租户列表",
-        key: "/users/list",
-      },
-      {
-        icon: "UserAddOutlined",
-        label: "新增租户",
-        key: "/users/add",
-      },
-    ],
-  },
-  {
-    icon: "LaptopOutlined",
-    label: "物业管理",
-    key: "/estate",
-    children: [
-      {
-        icon: "InsertRowLeftOutlined",
-        label: "楼宇管理",
-        key: "/estate/tenement",
-      },
-      {
-        icon: "BankOutlined",
-        label: "房间管理",
-        key: "/estate/room",
-      },
-      {
-        icon: "TruckOutlined",
-        label: "车辆信息",
-        key: "/estate/car",
-      },
-    ],
-  },
-  {
-    icon: "ToolOutlined",
-    label: "报修管理",
-    key: "/repair",
-  },
-  {
-    icon: "ToolOutlined",
-    label: "设备管理",
-    key: "/equipment",
-  },
-  {
-    icon: "ThunderboltOutlined",
-    label: "能源消耗",
-    key: "/energy",
-  },
-  {
-    icon: "UserOutlined",
-    label: "个人中心",
-    key: "/personal",
-  },
-];
-
-const managerMenuList = [
-  {
-    icon: "DashboardOutlined",
-    label: "工作台",
-    key: "/dashboard",
-  },
-  {
-    icon: "TeamOutlined",
-    label: "租户管理",
-    key: "/users",
-    children: [
-      {
-        icon: "UnorderedListOutlined",
-        label: "租户列表",
-        key: "/users/list",
-      },
-      {
-        icon: "UserAddOutlined",
-        label: "新增租户",
-        key: "/users/add",
-      },
-    ],
-  },
-  {
-    icon: "LaptopOutlined",
-    label: "物业管理",
-    key: "/estate",
-    children: [
-      {
-        icon: "InsertRowLeftOutlined",
-        label: "楼宇管理",
-        key: "/estate/tenement",
-      },
-      {
-        icon: "BankOutlined",
-        label: "房间管理",
-        key: "/estate/room",
-      },
-      {
-        icon: "TruckOutlined",
-        label: "车辆信息",
-        key: "/estate/car",
-      },
-    ],
-  },
-  {
-    icon: "ToolOutlined",
-    label: "报修管理",
-    key: "/repair",
-  },
-  {
-    icon: "TransactionOutlined",
-    label: "招商管理",
-    key: "/merchants",
-  },
-  {
-    icon: "FundProjectionScreenOutlined",
-    label: "运营管理",
-    key: "/operation",
-    children: [
-      {
-        icon: "FundViewOutlined",
-        label: "运营总览",
-        key: "/operation/all",
-      },
-      {
-        icon: "ReadOutlined",
-        label: "文章发布",
-        key: "/operation/article",
-      },
-      {
-        icon: "CommentOutlined",
-        label: "内容评论",
-        key: "/operation/comments",
-      },
-    ],
-  },
-  {
-    icon: "ToolOutlined",
-    label: "设备管理",
-    key: "/equipment",
-  },
-  {
-    icon: "ThunderboltOutlined",
-    label: "能源消耗",
-    key: "/energy",
-  },
-  {
-    icon: "SettingOutlined",
-    label: "系统设置",
-    key: "/settings",
-  },
-  {
-    icon: "UserOutlined",
-    label: "个人中心",
-    key: "/personal",
-  },
-];
-
-const customizeMenuList = [
-  {
-    icon: "DashboardOutlined",
-    label: "工作台",
-    key: "/dashboard",
-  },
-  {
-    icon: "TeamOutlined",
-    label: "租户管理",
-    key: "/users",
-    children: [
-      {
-        icon: "UnorderedListOutlined",
-        label: "租户列表",
-        key: "/users/list",
-      },
-    ],
-  },
-  {
-    icon: "LaptopOutlined",
-    label: "物业管理",
-    key: "/estate",
-    children: [
-      {
-        icon: "InsertRowLeftOutlined",
-        label: "楼宇管理",
-        key: "/estate/tenement",
-      },
-    ],
-  },
-  {
-    icon: "ToolOutlined",
-    label: "报修管理",
-    key: "/repair",
-  },
-  {
-    icon: "ToolOutlined",
-    label: "设备管理",
-    key: "/equipment",
-  },
-  {
-    icon: "ThunderboltOutlined",
-    label: "能源消耗",
-    key: "/energy",
-  },
-  {
-    icon: "UserOutlined",
-    label: "个人中心",
-    key: "/personal",
   },
 ];
 
 Mock.mock("https://www.demo.com/menu", "get", (options) => {
-  const token = sessionStorage.getItem("token");
-  if (token == "mocktoken123456admin") {
-    return {
-      code: 200,
-      message: "请求成功",
-      data: menuList,
-    };
-  } else if (token == "mocktoken123456user") {
-    return {
-      code: 200,
-      message: "请求成功",
-      data: userMenuList,
-    };
-  } else if (token == "mocktoken123456manager") {
-    return {
-      code: 200,
-      message: "请求成功",
-      data: managerMenuList,
-    };
-  } else {
-    return {
-      code: 200,
-      message: "失败",
-      data: [],
-    };
-  }
+  return {
+    code: 200,
+    message: "请求成功",
+    data: menuList,
+  };
+  // const token = sessionStorage.getItem("token");
+  // if (token == "mocktoken123456admin") {
+  //   return {
+  //     code: 200,
+  //     message: "请求成功",
+  //     data: menuList,
+  //   };
+  // } else if (token == "mocktoken123456user") {
+  //   return {
+  //     code: 200,
+  //     message: "请求成功",
+  //     data: menuList,
+  //   };
+  // } else if (token == "mocktoken123456manager") {
+  //   return {
+  //     code: 200,
+  //     message: "请求成功",
+  //     data: menuList,
+  //   };
+  // } else {
+  //   return {
+  //     code: 200,
+  //     message: "失败",
+  //     data: [],
+  //   };
+  // }
 });
 
+Mock.mock("https://www.demo.com/userInfo", "get", (options) => {
+  return {
+    code: 200,
+    message: "请求成功",
+    data: {
+      username: "雪饼猴",
+      token: "mocktoken123456admin",
+      btnAuth: ["add", "edit", "delete"],
+    },
+  };
+});
