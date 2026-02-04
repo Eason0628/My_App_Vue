@@ -1,7 +1,7 @@
 import { menus, userInfo } from "@/js/service/user.js";
 const routeAllPathToCompMap = import.meta.glob("@/page/**/*.vue");
 
-export function tree2list(tree) {
+export function tree2list (tree) {
   let data = [];
   while (tree.length) {
     let { children, ...item } = tree.pop();
@@ -25,23 +25,28 @@ export function tree2list(tree) {
 export default {
   namespaced: true, //开启命名空间
   state: {
-    name: "张三",
+    name: "",
     menus: [],
     userInfo: {},
+    token: localStorage.getItem("token")? localStorage.getItem("token") : "",
   },
   mutations: {
-    setName(state, value) {
+    setName (state, value) {
       state.name = value;
     },
-    setMenus(state, value) {
+    setToken (state, value) {
+      state.token = value;
+      localStorage.setItem("token", value);
+    },  
+    setMenus (state, value) {
       state.menus = value;
     },
-    setUserInfo(state, value) {
+    setUserInfo (state, value) {
       state.userInfo = value;
     },
   },
   actions: {
-    SetMenus({ commit }) {
+    SetMenus ({ commit }) {
       return new Promise((resolve, reject) => {
         menus()
           .then((res) => {
@@ -55,8 +60,7 @@ export default {
             data.forEach((r) => {
               if (r.component) {
                 try {
-                  r.component =
-                    routeAllPathToCompMap[`/src/views/${r.component}`];
+                  r.component = routeAllPathToCompMap[`/src/views/${r.component}`];
                 } catch {
                   r.component = null;
                 }
@@ -76,8 +80,11 @@ export default {
     },
   },
   getters: {
-    getName(state) {
+    getName (state) {
       return state.name;
+    },
+    getToken (state) {
+      return state.token;
     },
   },
 };

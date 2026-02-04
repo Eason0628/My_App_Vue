@@ -1,4 +1,5 @@
 import axios from "axios";
+import store from "@/store";
 
 const http = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
@@ -21,8 +22,8 @@ http.interceptors.request.use(
 http.interceptors.response.use(
   (response) => {
     const res = response.data;
-    if (res.code !== 200) {
-      return Promise.reject(res.message);
+    if (res.data.token) {
+     store.commit("user/setToken", res.data.token);
     }
     return res;
   },
