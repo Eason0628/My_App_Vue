@@ -23,7 +23,7 @@
               <template #prefix>
                 <LockOutlined />
               </template>
-            </a-input-password> </a-form-item>F
+            </a-input-password> </a-form-item>
 
           <a-form-item>
             <a-button type="primary" block :loading="loading" @click="onSubmit">

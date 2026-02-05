@@ -1,7 +1,7 @@
 import { menus, userInfo } from "@/js/service/user.js";
 const routeAllPathToCompMap = import.meta.glob("@/page/**/*.vue");
 
-export function tree2list (tree) {
+export function tree2list(tree) {
   let data = [];
   while (tree.length) {
     let { children, ...item } = tree.pop();
@@ -27,26 +27,34 @@ export default {
   state: {
     name: "",
     menus: [],
+    route: {},
+    routes: [],
     userInfo: {},
-    token: localStorage.getItem("token")? localStorage.getItem("token") : "",
+    token: localStorage.getItem("token") ? localStorage.getItem("token") : "",
   },
   mutations: {
-    setName (state, value) {
+    setName(state, value) {
       state.name = value;
     },
-    setToken (state, value) {
+    setToken(state, value) {
       state.token = value;
       localStorage.setItem("token", value);
-    },  
-    setMenus (state, value) {
+    },
+    setMenus(state, value) {
       state.menus = value;
     },
-    setUserInfo (state, value) {
+    setUserInfo(state, value) {
       state.userInfo = value;
+    },
+    setRoute(state, value) {
+      state.route = value;
+    },
+    setRoutes(state, value) {
+      state.routes = value;
     },
   },
   actions: {
-    SetMenus ({ commit }) {
+    SetMenus({ commit,getters }) {
       return new Promise((resolve, reject) => {
         menus()
           .then((res) => {
@@ -60,7 +68,8 @@ export default {
             data.forEach((r) => {
               if (r.component) {
                 try {
-                  r.component = routeAllPathToCompMap[`/src/views/${r.component}`];
+                  r.component =
+                    routeAllPathToCompMap[`/src/views/${r.component}`];
                 } catch {
                   r.component = null;
                 }
@@ -75,16 +84,31 @@ export default {
         userInfo().then((res) => {
           console.log(JSON.stringify(res.data));
           commit("setUserInfo", res.data);
+
+          let userInfo = getters["getUserInfo"];
+          console.log('userInfo:', userInfo);
         });
       });
     },
   },
   getters: {
-    getName (state) {
+    getName(state) {
       return state.name;
     },
-    getToken (state) {
+    getToken(state) {
       return state.token;
+    },
+    getUserInfo(state) {
+      return state.userInfo;
+    },
+    getMenus(state) {
+      return state.menus;
+    },
+    getRoute(state) {
+      return state.route;
+    },
+    getRoutes(state) {
+      return state.routes;
     },
   },
 };
